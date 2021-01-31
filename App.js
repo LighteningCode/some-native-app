@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect } from 'react';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator();  
 
 let width = Dimensions.get("window").width;
 
