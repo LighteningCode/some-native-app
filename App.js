@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Switch, Text, View, Dimensions } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
+import { useEffect } from 'react';
 
 const Stack = createStackNavigator();
 
@@ -22,13 +23,23 @@ function HomeScreen({ navigation }) {
 function SwitchesScreen({ }) {
 
   const [isEnabled, setIsEnabled] = useState(false);
-  const [redEnabled, setRedEnabled] = useState(false);
-  const [yellowEnabled, setYellowEnabled] = useState(false);
-  const [blueEnabled, setBlueEnabled] = useState(false);
+
+  const [color, setColor] = useState([false,false,false])
 
   const toggleSwitch = () => {
     setIsEnabled(prevState => !prevState)
   }
+
+  const colorChange = (idx) => {
+    let temp_color = color
+    temp_color[idx] = !temp_color[idx]
+    console.log(temp_color)
+    setColor(temp_color)
+  }
+
+  useEffect(()=>{
+
+  },[color])
 
 
 
@@ -52,39 +63,39 @@ function SwitchesScreen({ }) {
             <View style={styles.listItem}>
               <View>
                 <Text style={{ alignSelf: "center", fontSize: 20 }}>Red</Text>
-                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(redEnabled) ? "Enabled" : "Disabled"}</Text>
+                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[0]) ? "Enabled" : "Disabled"}</Text>
               </View>
 
               <Switch
-                value={redEnabled}
+                value={color[0]}
                 trackColor={{ false: "#767577", true: "#ff0000" }}
-                onValueChange={() => setRedEnabled(prevState => !prevState)}
+                onValueChange={() => colorChange(0)}
               />
             </View>
 
             <View style={styles.listItem}>
               <View>
                 <Text style={{ alignSelf: "center", fontSize: 20 }}>Yellow</Text>
-                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(yellowEnabled) ? "Enabled" : "Disabled"}</Text>
+                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[1]) ? "Enabled" : "Disabled"}</Text>
               </View>
 
               <Switch
-                value={yellowEnabled}
+                value={color[1]}
                 trackColor={{ false: "#767577", true: "#ffdd00" }}
-                onValueChange={() => setYellowEnabled(prevState => !prevState)}
+                onValueChange={() => colorChange(1)}
               />
             </View>
 
             <View style={styles.listItem}>
               <View>
                 <Text style={{ alignSelf: "center", fontSize: 20 }}>Yellow</Text>
-                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(blueEnabled) ? "Enabled" : "Disabled"}</Text>
+                <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[2]) ? "Enabled" : "Disabled"}</Text>
               </View>
 
               <Switch
-                value={blueEnabled}
+                value={color[2]}
                 trackColor={{ false: "#767577", true: "#0059ff" }}
-                onValueChange={() => setBlueEnabled(prevState => !prevState)}
+                onValueChange={() => colorChange(2)}
               />
             </View>
           </>
