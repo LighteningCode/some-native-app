@@ -1,13 +1,63 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Switch, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function HomeScreen({ navigation }) {
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button title="Go to switches"
+      onPress={()=> navigation.navigate("Switches")} />
     </View>
+  )
+}
+
+function SwitchesScreen({  }) {
+
+  const [isEnabled, setIsEnabled] = useState();
+
+  const toggleSwitch = () => {
+    setIsEnabled(prevState => !prevState)
+  }
+
+  return (
+    <View style={styles.container}>
+      <Switch
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        trackColor={{ false: "#767577", true: "#ffaa00" }}
+      />
+    </View>
+  )
+}
+
+export default function App() {
+
+
+
+  return (
+    <>
+      <StatusBar style="auto" />
+      <NavigationContainer>
+
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: "Welcome Home" }}
+          />
+
+          <Stack.Screen name="Switches" component={SwitchesScreen} />
+
+        </Stack.Navigator>
+
+      </NavigationContainer>
+    </>
   );
 }
 
