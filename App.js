@@ -1,12 +1,13 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Switch, Text, View, Dimensions } from 'react-native';
+import { Button, StyleSheet, Switch, Text, View, Dimensions,FlatList } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect } from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchesScreen from './src/SwitchesScreen';
+import ListScreen from './src/ListScreen';
 
 
 const Stack = createStackNavigator();
@@ -18,11 +19,17 @@ let height = Dimensions.get("window").height;
 function HomeScreen({ navigation }) {
 
   return (
-    <View style>
+    <View>
       <TouchableOpacity
         onPress={() => navigation.navigate("Switches")}
-        style={{ backgroundColor: "#0099ff", padding: 15, alignItems: "center", marginHorizontal: 10, borderRadius: 5 }}>
+        style={styles.button}>
         <Text style={{ color: "white" }}>Go to switches</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("List")}
+        style={styles.button}>
+        <Text style={{ color: "white" }}>Go to List</Text>
       </TouchableOpacity>
     </View>
   )
@@ -46,7 +53,9 @@ export default function App() {
             component={HomeScreen}
             options={{ title: "Welcome Home" }}
           />
+
           <Stack.Screen name="Switches" component={SwitchesScreen} />
+          <Stack.Screen name="List" component={ListScreen} />
 
         </Stack.Navigator>
       </NavigationContainer>
@@ -97,8 +106,15 @@ const styles = StyleSheet.create({
     marginRight: 10,
     alignItems: "center",
     borderWidth: 2
+  },
+  button: {
+    backgroundColor: "#0099ff",
+    padding: 15,
+    alignItems: "center",
+    marginHorizontal: 10,
+    borderRadius: 5,
+    marginVertical: 10
   }
-
 });
 
 
