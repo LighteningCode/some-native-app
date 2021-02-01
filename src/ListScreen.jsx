@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Switch, Text, View, Dimensions, FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const styles = StyleSheet.create({
@@ -10,12 +11,16 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 18,
         height: 44,
+        justifyContent: 'space-between'
     }
 })
 
-function ListItem({ value }) {
+function ListItem({ name, age }) {
     return (
-        <Text style={styles.item}>{value}</Text>
+        <TouchableOpacity style={{ justifyContent: "space-between", flexDirection: "row" }}>
+            <Text style={styles.item}>{name}</Text>
+            <Text style={{...styles.item, color: "#8a8a8a"}}>{age} yrs</Text>
+        </TouchableOpacity>
     )
 }
 
@@ -23,18 +28,18 @@ function ListScreen({ }) {
     return (
         <View style={styles.container}>
             <FlatList data={[
-                { key: 'Devin' },
-                { key: 'Dan' },
-                { key: 'Dominic' },
-                { key: 'Jackson' },
-                { key: 'James' },
-                { key: 'Joel' },
-                { key: 'John' },
-                { key: 'Jillian' },
-                { key: 'Jimmy' },
-                { key: 'Julie' },
+                { name: 'Devin', age: "10" },
+                { name: 'Dan', age: "16" },
+                { name: 'Dominic', age: "15" },
+                { name: 'Jackson', age: "25" },
+                { name: 'James', age: "30" },
+                { name: 'Joel', age: "26" },
+                { name: 'John', age: "40" },
+                { name: 'Jillian', age: "35" },
+                { name: 'Jimmy', age: "31" },
+                { name: 'Julie', age: "60" },
             ]}
-                renderItem={({ item }) => <ListItem value={item.key} />}
+                renderItem={({ item }) => <ListItem name={item.name} age={item.age} />}
             />
         </View>
     )
