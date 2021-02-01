@@ -5,7 +5,7 @@ import { Button, StyleSheet, Switch, Text, View, Dimensions } from 'react-native
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchesScreen from './src/SwitchesScreen';
 
 
@@ -18,9 +18,12 @@ let height = Dimensions.get("window").height;
 function HomeScreen({ navigation }) {
 
   return (
-    <View style={styles.container}>
-      <Button title="Go to switches"
-        onPress={() => navigation.navigate("Switches")} />
+    <View style>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Switches")}
+        style={{ backgroundColor: "#0099ff", padding: 15, alignItems: "center", marginHorizontal: 10, borderRadius: 5 }}>
+        <Text style={{ color: "white" }}>Go to switches</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 10,
     marginRight: 10,
-    alignItems:"center",
+    alignItems: "center",
     borderWidth: 2
   },
   roomStyleOFF: {
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 10,
     marginRight: 10,
-    alignItems:"center",
+    alignItems: "center",
     borderWidth: 2
   }
 

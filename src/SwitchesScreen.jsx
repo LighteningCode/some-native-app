@@ -71,23 +71,24 @@ function SwitchesScreen({ }) {
     }
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
 
+        <View style={styles.container}>
+            <ScrollView style={{ alignContent: 'center' }}>
                 <View style={{ flexDirection: "row", flex: 1 }}>
                     <Room state={room1} id="1" />
                     <Room state={room2} id="2" />
                     <Room state={room3} id="3" />
                 </View>
 
-
-                <Text style={{ marginBottom: 10 }}>Toggle to switch between "ON" and "OFF" state</Text>
-                <Text>{(isEnabled) ? "Enabled" : "Disabled"}</Text>
-                <Switch
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                    trackColor={{ false: "#767577", true: "#ffaa00" }}
-                />
+                <View style={{marginVertical: 30}}>
+                    <Text style={{ marginBottom: 10 }}>Toggle to switch between "ON" and "OFF" state</Text>
+                    <Text>{(isEnabled) ? "Enabled" : "Disabled"}</Text>
+                    <Switch
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                        trackColor={{ false: "#767577", true: "#ffaa00" }}
+                    />
+                </View>
 
                 {
                     (isEnabled) ?
@@ -135,10 +136,10 @@ function SwitchesScreen({ }) {
                         <View></View>
                 }
 
+            </ScrollView>
 
-            </View>
+        </View>
 
-        </ScrollView>
     )
 }
 
