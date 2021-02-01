@@ -12,10 +12,10 @@ const Stack = createStackNavigator();
 let width = Dimensions.get("window").width;
 let height = Dimensions.get("window").height;
 
-function Room({ }) {
+function Room({ id, state=false }) {
   return (
-    <View style={{ width: 100, height: 100, backgroundColor: "#767577", borderRadius: 10, marginBottom: 10,flexDirection:"row", justifyContent:'center' }}>
-      <Text>Room 1</Text>
+    <View style={(state) ? styles.roomStylesON : styles.roomStyleOFF}>
+      <Text style={(state) ? { color: "black"} : {color: "white"}}>Room {id}</Text>
     </View>
   )
 }
@@ -34,39 +34,22 @@ function SwitchesScreen({ }) {
 
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const [color, setColor] = useState([false, false, false])
+  const [room1, setRoom1] = useState(false)
+  const [room2, setRoom2] = useState(false)
+  const [room3, setRoom3] = useState(false)
 
   const toggleSwitch = () => {
     setIsEnabled(prevState => !prevState)
   }
-
-  const colorChange = (idx) => {
-    let temp_color = color
-    temp_color[idx] = !temp_color[idx]
-    console.log(temp_color)
-    setColor(temp_color)
-  }
-
-  useEffect(() => {
-
-  }, [color])
-
-
 
   return (
     <ScrollView >
       <View style={styles.container}>
 
         <View style={{ flexDirection: "row", flex: 1 }}>
-          <View style={{ width: 100, height: 100, backgroundColor: "#767577", borderRadius: 10, marginBottom: 10 }}>
-            <Text>Room 1</Text>
-          </View>
-          <View style={{ width: 100, height: 100, backgroundColor: "#767577", borderRadius: 10, marginBottom: 10 }}>
-            <Text>Room 2</Text>
-          </View>
-          <View style={{ width: 100, height: 100, backgroundColor: "#767577", borderRadius: 10, marginBottom: 10 }}>
-            <Text>Room 3</Text>
-          </View>
+          <Room state={room1} id="1" />
+          <Room state={room2} id="2" />
+          <Room state={room3} id="3" />
         </View>
 
 
@@ -84,39 +67,39 @@ function SwitchesScreen({ }) {
               <View style={styles.listItem}>
                 <View>
                   <Text style={{ alignSelf: "center", fontSize: 20 }}>Room 1</Text>
-                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[0]) ? "Lights On" : "Lights off"}</Text>
+                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(room1) ? "Lights On" : "Lights off"}</Text>
                 </View>
 
                 <Switch
-                  value={color[0]}
-                  trackColor={{ false: "#767577", true: "#ff0000" }}
-                  onValueChange={() => colorChange(0)}
+                  value={room1}
+                  trackColor={{ false: "#767577", true: "#0059ff" }}
+                  onValueChange={() => setRoom1(!room1)}
                 />
               </View>
 
               <View style={styles.listItem}>
                 <View>
                   <Text style={{ alignSelf: "center", fontSize: 20 }}>Room 2</Text>
-                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[1]) ? "Lights On" : "Lights off"}</Text>
+                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(room2) ? "Lights On" : "Lights off"}</Text>
                 </View>
 
                 <Switch
-                  value={color[1]}
-                  trackColor={{ false: "#767577", true: "#ffdd00" }}
-                  onValueChange={() => colorChange(1)}
+                  value={room2}
+                  trackColor={{ false: "#767577", true: "#0059ff" }}
+                  onValueChange={() => setRoom2(!room2)}
                 />
               </View>
 
               <View style={styles.listItem}>
                 <View>
                   <Text style={{ alignSelf: "center", fontSize: 20 }}>Room 3</Text>
-                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(color[2]) ? "Lights On" : "Lights off"}</Text>
+                  <Text style={{ fontSize: 10, color: "#a3a3a3" }}>{(room3) ? "Lights On" : "Lights off"}</Text>
                 </View>
 
                 <Switch
-                  value={color[2]}
+                  value={room3}
                   trackColor={{ false: "#767577", true: "#0059ff" }}
-                  onValueChange={() => colorChange(2)}
+                  onValueChange={() => setRoom3(!room3)}
                 />
               </View>
             </>
@@ -151,7 +134,6 @@ export default function App() {
           <Stack.Screen name="Switches" component={SwitchesScreen} />
 
         </Stack.Navigator>
-
       </NavigationContainer>
     </>
   );
@@ -159,11 +141,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: height,
+    minHeight: height - 100,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 30
   },
   listItem: {
     width: width,
@@ -172,7 +155,35 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: '#fff',
+    marginVertical: 10
+  },
+  roomStylesON: {
+    width: 100,
+    height: 100,
+    backgroundColor: "white",
+    borderRadius: 10,
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems:"center",
+    borderWidth: 2
+  },
+  roomStyleOFF: {
+    width: 100,
+    height: 100,
+    backgroundColor: "black",
+    borderRadius: 10,
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems:"center",
+    borderWidth: 2
   }
+
 });
 
 
