@@ -9,6 +9,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchesScreen from './src/SwitchesScreen';
 import ListScreen from './src/ListScreen';
 import ColorPicker from './src/Colorpicker';
+import FormInput from './src/FormInput';
 
 
 const Stack = createStackNavigator();
@@ -38,6 +39,12 @@ function HomeScreen({ navigation }) {
         style={styles.button}>
         <Text style={{ color: "white" }}>Go to Colorpicker</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("forms")}
+        style={styles.button}>
+        <Text style={{ color: "white" }}>Go to FormInput</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -64,6 +71,7 @@ export default function App() {
           <Stack.Screen name="Switches" component={SwitchesScreen} />
           <Stack.Screen name="List" component={ListScreen} />
           <Stack.Screen name="colorpicker" component={ColorPicker} />
+          <Stack.Screen name="forms" component={FormInput} />
 
         </Stack.Navigator>
       </NavigationContainer>
