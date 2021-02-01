@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import SwitchesScreen from './src/SwitchesScreen';
 import ListScreen from './src/ListScreen';
+import ColorPicker from './src/Colorpicker';
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,12 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("List")}
         style={styles.button}>
         <Text style={{ color: "white" }}>Go to List</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("colorpicker")}
+        style={styles.button}>
+        <Text style={{ color: "white" }}>Go to Colorpicker</Text>
       </TouchableOpacity>
     </View>
   )
@@ -56,6 +63,7 @@ export default function App() {
 
           <Stack.Screen name="Switches" component={SwitchesScreen} />
           <Stack.Screen name="List" component={ListScreen} />
+          <Stack.Screen name="colorpicker" component={ColorPicker} />
 
         </Stack.Navigator>
       </NavigationContainer>
