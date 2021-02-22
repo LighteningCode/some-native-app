@@ -10,7 +10,6 @@ import SwitchesScreen from './src/SwitchesScreen';
 import ListScreen from './src/ListScreen';
 import ColorPicker from './src/Colorpicker';
 import FormInput from './src/FormInput';
-import ButtonDial from './src/ButtonDial';
 
 
 const Stack = createStackNavigator();
@@ -46,12 +45,6 @@ function HomeScreen({ navigation }) {
         style={styles.button}>
         <Text style={{ color: "white" }}>Go to FormInput</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate("dial")}
-        style={styles.button}>
-        <Text style={{ color: "white" }}>Go to Button Dial</Text>
-      </TouchableOpacity>
     </View>
   )
 }
@@ -79,7 +72,6 @@ export default function App() {
           <Stack.Screen name="List" component={ListScreen} />
           <Stack.Screen name="colorpicker" component={ColorPicker} />
           <Stack.Screen name="forms" component={FormInput} />
-          <Stack.Screen name="dial" component={ButtonDial} />
 
         </Stack.Navigator>
       </NavigationContainer>
