@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Switch, Text, View, Dimensions, FlatList, Modal } from 'react-native';
+import {View, TextField, Text, Button} from 'react-native-ui-lib';
 
 function ButtonDial(){
     return(
-        <View>
+        <View paddingH-25>
 
-            <Text>
-                Button Dial 2
+            <Text blue50>
+                Button Dial
             </Text>
 
         </View>

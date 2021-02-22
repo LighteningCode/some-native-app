@@ -2,6 +2,7 @@ import { Picker } from '@react-native-picker/picker';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Switch, Text, View, Dimensions, pick, FlatList, Modal } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 
 import tailwind from "tailwind-rn";
 
