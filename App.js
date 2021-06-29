@@ -25,7 +25,7 @@ function HomeScreen({ navigation }) {
       <TouchableOpacity
         onPress={() => navigation.navigate("Switches")}
         style={styles.button}>
-        <Text style={{ color: "white" }}>Go to switches</Text>
+        <Text style={{ color: "white" }}>Go to switch</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
